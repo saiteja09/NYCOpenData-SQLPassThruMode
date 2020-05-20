@@ -86,7 +86,7 @@ public class OpenAccessPassThruIP implements oajava.sql.ip
                         0,  /* IP_SUPPORT_ALTER_TABLE */
                         0,  /* IP_SUPPORT_BLOCK_JOIN */
                         0,  /* IP_SUPPORT_XA */
-                        0,  /* IP_SUPPORT_QUERY_MODE_SELECTION */
+                        1,  /* IP_SUPPORT_QUERY_MODE_SELECTION */
                         0,  /* IP_SUPPORT_VALIDATE_SCHEMAOBJECTS_IN_USE */
                         1,  /* IP_SUPPORT_UNICODE_INFO */
                         0,  /* Reserved for future use */
@@ -139,6 +139,8 @@ public class OpenAccessPassThruIP implements oajava.sql.ip
     public int ipConnect(long tmHandle,long dam_hdbc,String sDataSourceName, String sUserName, String sPassword,
 						String sCurrentCatalog, String sIPProperties, String sIPCustomProperties)
     {
+	jdam.dam_setOption(DAM_CONN_OPTION, dam_hdbc, DAM_CONN_OPTION_POST_PROCESSING, DAM_PROCESSING_OFF);
+
         /* Save the trace handle */
         m_tmHandle = tmHandle;
         jdam.trace(m_tmHandle, UL_TM_F_TRACE,"ipConnect called\n");
